@@ -16,13 +16,20 @@ export default {
     return {
       swiperOption: {
         pagination: '.swiper-pagination',
-        loop: true
+        //循环播放
+        loop: true,
+        //切换速度
+        speed: 400,
+        //自动切换时间
+        autoplay: 2500,
+        //操作swiper后，不停止切换
+        autoplayDisableOnInteraction: false
       },
       swiperList: [{
         id: '0001',
         imgUrl: 'http://img1.qunarzz.com/piao/fusion/1807/78/0a6355bcbbf89502.jpg_750x200_fc738633.jpg'
       }, {
-        id: '0001',
+        id: '0002',
         imgUrl: 'http://img1.qunarzz.com/piao/fusion/1711/61/0af7f65988570e02.jpg_750x200_905350d6.jpg' 
       }]
     }
