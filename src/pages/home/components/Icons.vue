@@ -1,6 +1,6 @@
 <template>
 	<div class="icons">
-    <swiper>
+		<swiper :options="swiperOption">
 			<swiper-slide v-for="(page, index) of pages" :key="index">
 				<div class="icon" v-for="item of page" :key="item.id">
 					<div class="icon-img">
@@ -9,7 +9,8 @@
 					<p class="icon-desc">{{item.desc}}</p>
 				</div>
 			</swiper-slide>
-    </swiper>
+			<div class="swiper-pagination"  slot="pagination"></div>
+		</swiper>
 	</div>
 </template>
 
@@ -18,6 +19,12 @@ export default {
 	name: 'HomeIcons',
 	data () {
 		return {
+			swiperOption: {
+				pagination: '.swiper-pagination',
+				//循环播放
+				loop: false,
+				autoplayDisableOnInteraction: false
+			},
 			iconList: [{
 				id: '0001',
 				imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png',
@@ -80,6 +87,10 @@ export default {
 	.icons >>> .swiper-container
 		height: 0
 		padding-bottom: 50%
+	.icons >>> .swiper-pagination
+		bottom: -2px;
+	.icons >>> .swiper-pagination-bullet-active
+		background: $bgColor
 	.icon
 		position: relative
 		overflow: hidden
