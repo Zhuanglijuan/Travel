@@ -16,7 +16,10 @@
 
 <script>
 export default {
-	name: 'HomeIcons',
+  name: 'HomeIcons',
+  props: {
+    list: Array
+  },
 	data () {
 		return {
 			swiperOption: {
@@ -24,51 +27,13 @@ export default {
 				//循环播放
 				loop: false,
 				autoplayDisableOnInteraction: false
-			},
-			iconList: [{
-				id: '0001',
-				imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png',
-				desc: '一日游'
-			}, {
-				id: '0002',
-				imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/17/99402a22ce4af302.png',
-				desc: '西湖'
-			}, {
-				id: '0003',
-				imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-				desc: '杭州必游'
-			}, {
-				id: '0004',
-				imgUrl: 'https://img1.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png',
-				desc: '打卡圣地'
-			}, {
-				id: '0005',
-				imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/5a/13ceb38dcf262f02.png',
-				desc: '一日游'
-			}, {
-				id: '0006',
-				imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/17/99402a22ce4af302.png',
-				desc: '西湖'
-			}, {
-				id: '0007',
-				imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/ff/fdf170ee89594b02.png',
-				desc: '杭州必游'
-			}, {
-				id: '0008',
-				imgUrl: 'https://img1.qunarzz.com/piao/fusion/1803/20/831d62d2e1c7be02.png',
-				desc: '打卡圣地'
-			}, {
-				id: '0009',
-				imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/17/99402a22ce4af302.png',
-				desc: '西湖'
 			}
-			]
 		}
 	},
 	computed: {
 		pages () {
 			const pages = []
-			this.iconList.forEach((item, index) => {
+			this.list.forEach((item, index) => {
 				const page = Math.floor(index / 8)
 				if (!pages[page]) {
 					pages[page] = []
