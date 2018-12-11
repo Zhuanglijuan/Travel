@@ -1,62 +1,63 @@
 <template>
-    <ul class="list">
-      <li class="item" v-for="item of letters" :key="item" :ref="item" @click="handleLetterClick" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
-        {{item}}
-      </li>
-    </ul>
+  <ul class="list">
+    <li class="item" v-for="item of letters" :key="item" :ref="item" @click="handleLetterClick"
+        @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd">
+      {{item}}
+    </li>
+  </ul>
 </template>
 
 <script>
-export default {
-  name: 'CityAplhabet',
-  props: {
-    cities: Object
-  },
-  computed: {
-    letters () {
-      const letters = []
-      for (let i in this.cities) {
-        letters.push(i)
-      }
-      return letters
-    }
-  },
-  data () {
-    return {
-      touchStatus: false,
-      startY: 0,
-      timer: null
-    }
-  },
-  updated () {
-    this.startY = this.$refs['A'][0].offsetTop
-  },
-  methods: {
-    handleLetterClick (e) {
-      this.$emit('change', e.target.innerText)
+  export default {
+    name: 'CityAplhabet',
+    props: {
+      cities: Object
     },
-    handleTouchStart () {
-      this.touchStatus = true
-    },
-    handleTouchMove (e) {
-      if (this.touchStatus) {
-        if (this.timer) {
-          clearTimeout(this.timer)
+    computed: {
+      letters () {
+        const letters = []
+        for (let i in this.cities) {
+          letters.push(i)
         }
-        this.timer = setTimeout(() => {
-          const touchY = e.touches[0].clientY - 79
-          const index = Math.floor((touchY - this.startY) / 20) 
-          if (index >= 0 && index < this.letters.length) {
-            this.$emit('change', this.letters[index])
-          }
-        }, 16);
+        return letters
       }
     },
-    handleTouchEnd () {
-      this.touchStatus = false
+    data () {
+      return {
+        touchStatus: false,
+        startY: 0,
+        timer: null
+      }
+    },
+    updated () {
+      this.startY = this.$refs['A'][0].offsetTop
+    },
+    methods: {
+      handleLetterClick (e) {
+        this.$emit('change', e.target.innerText)
+      },
+      handleTouchStart () {
+        this.touchStatus = true
+      },
+      handleTouchMove (e) {
+        if (this.touchStatus) {
+          if (this.timer) {
+            clearTimeout(this.timer)
+          }
+          this.timer = setTimeout(() => {
+            const touchY = e.touches[0].clientY - 79
+            const index = Math.floor((touchY - this.startY) / 20)
+            if (index >= 0 && index < this.letters.length) {
+              this.$emit('change', this.letters[index])
+            }
+          }, 16)
+        }
+      },
+      handleTouchEnd () {
+        this.touchStatus = false
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
@@ -73,5 +74,5 @@ export default {
     .item
       line-height: .4rem
       text-align: center
-      color:$bgColor
+      color: $bgColor
 </style>

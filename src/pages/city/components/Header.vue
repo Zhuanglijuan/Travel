@@ -8,13 +8,13 @@
 </template>
 
 <script>
-export default {
-  name: 'CityHeader'
-}
+  export default {
+    name: 'CityHeader'
+  }
 </script>
 
 <style lang="stylus" scoped>
-@import '~styles/varibles.styl'
+  @import '~styles/varibles.styl'
   .header
     position: relative
     overflow: hidden

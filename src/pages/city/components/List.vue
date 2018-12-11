@@ -28,38 +28,41 @@
 </template>
 
 <script>
-import Bsroll from 'better-scroll'
-export default {
-  name: 'CityList',
-  props: {
-    hot: Array,
-    cities: Object,
-    letter: String
-  },
-  mounted () {
-    this.scroll = new Bsroll(this.$refs.wrapper)
-  },
-  watch: {
-    letter () {
-      if (this.letter) {
-        const element = this.$refs[this.letter][0]
-        this.scroll.scrollToElement(element)
+  import Bsroll from 'better-scroll'
+
+  export default {
+    name: 'CityList',
+    props: {
+      hot: Array,
+      cities: Object,
+      letter: String
+    },
+    mounted () {
+      this.scroll = new Bsroll(this.$refs.wrapper)
+    },
+    watch: {
+      letter () {
+        if (this.letter) {
+          const element = this.$refs[this.letter][0]
+          this.scroll.scrollToElement(element)
+        }
       }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
   @import '~styles/varibles.styl'
-  .border-topbottom 
+  .border-topbottom
     &:before
       border-color: #ccc
     &:after
       border-color: #ccc
-  .border-bottom 
+
+  .border-bottom
     &:before
       border-color: #ccc
+
   .list
     position: absolute
     overflow: hidden
